@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+</head>
+    <link rel="stylesheet" href="style.css">
+<body>
+    <div class="content">
+        <dvi class="calculator">
+            <form>
+                <p>TP's CALCULATOR</p>
+                <div>
+                    <input type="text" name="display" disabled>
+                </div>
+                <div>
+                    <input type="button" value="On\Off" onclick="onAndOff()">
+                    <input type="button" value="AC" onclick="dis('')">
+                    <input type="button" value="DEL">
+                    <input type="button" value="/">
+                </div>
+                <div>
+                    <input type="button" value="7" onclick="dis('7')" onkeydown="assignNumber(event)">
+                    <input type="button" value="8" onclick="dis('8')">
+                    <input type="button" value="9" onclick="dis('9')">
+                    <input type="button" value="*">
+                </div>
+                <div>
+                    <input type="button" value="4">
+                    <input type="button" value="5">
+                    <input type="button" value="6">
+                    <input type="button" value="-">
+                </div>
+                <div>
+                    <input type="button" value="1">
+                    <input type="button" value="2">
+                    <input type="button" value="3">
+                    <input type="button" value="+">
+                </div>
+                <div>
+                    <input type="button" value=".">
+                    <input type="button" value="0">
+                    <input type="button" value="=" onclick="assignNumber(onclick)">
+                </div>
+            </form>
+        </dvi>
+    </div>
+
+</body>
+    <script href="logic.js"></script>
+</html>
