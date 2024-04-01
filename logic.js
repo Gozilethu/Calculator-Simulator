@@ -1,35 +1,123 @@
-document.addEventListener("DOMContentLoaded", function() {
-    const display = document.querySelector('input[name="display"]');
-    const buttons = document.querySelectorAll('.calculator input[type="button"]');
-    let currentExpression = '';
+class Calculator {
+    constructor(previousNum, currentNum) {
+        this.previousNum = previousNum;
+        this.currentNum = currentNum;
+        this.opSign = '';
+    }
     
-    buttons.forEach(button => {
-        button.addEventListener('click', function() {
-            const value = this.value;
-            
-            if (value === 'On/Off') {
-                // Clear the display and reset the expression
-                currentExpression = '';
-                display.value = '';
-            } else if (value === '=') {
-                // Evaluate the expression and display the result
-                try {
-                    const result = eval(currentExpression);
-                    display.value = result;
-                    currentExpression = result.toString();
-                } catch (error) {
-                    display.value = 'Error';
-                    currentExpression = '';
-                }
-            } else if (value === 'DEL') {
-                // Delete the last character from the expression
-                currentExpression = currentExpression.slice(0, -1);
-                display.value = currentExpression;
-            } else {
-                // Append the clicked value to the expression
-                currentExpression += value;
-                display.value = currentExpression;
-            }
-        });
-    });
-});
+    onAndOf() {
+        var on = rgb(255, 0, 0);
+        var off = rgb(141, 149, 156);
+
+        document.getElementById('onAndOff').value = on;
+
+    }
+
+    addNumber(number) {
+        if (number === '.' && this.currentNum.includes('.')) {
+            return;
+        }
+        this.currentNum = this.currentNum.toString() + number.toString();
+    }
+    deleteLastDigit() {
+       /*onclick="display.value = display.value.toString().slice(0,-1)" */ 
+       this.currentNum = this.currentNum.slice(0, -1);
+    }
+
+    clear() {
+        this.previousNum = ' ';
+        this.currentNum = ' ';
+        this.opSign = ' ';
+    }
+
+    operationSign(opSign) {
+        if (this.opSign === '') {
+            this.opSign = opSign;
+            this.previousNum = this.currentNum;
+            this.currentNum = "";
+        } else {
+            this.computeInput();
+            this.opSign = opSign;
+        }
+    }
+
+    updateDisplay() {
+        document.getElementsByName('display')[0].value = this.currentNum;
+    }
+
+    computeInput() {
+        let sum;
+        const preNumber = parseFloat(this.previousNum);
+        const curNumber = parseFloat(this.currentNum);
+        if (isNaN(preNumber) || isNaN(curNumber)) {
+            return;
+        }
+
+        switch(this.opSign) {
+            case '+':
+                sum = preNumber + curNumber;
+                break;
+            case '/':
+                sum = preNumber / curNumber;
+                break;
+            case '-':
+                sum = preNumber - curNumber;
+                break;
+            case '*':
+                sum = preNumber * curNumber;
+                break;
+            default:
+                return;
+        }
+
+        this.currentNum = sum;
+        this.opSign = '';
+        this.previousNum = "";
+    }
+}
+
+let previousNum = "";
+let currentNum = "";
+const display = document.getElementsByName('display')[0];
+const numButtons = document.querySelectorAll('.numberButton');
+const operationButtons = document.querySelectorAll('#operationSigns');
+const calculator = new Calculator(previousNum, currentNum);
+
+function addNumber(number) {
+    calculator.addNumber(number);
+    calculator.updateDisplay();
+}
+
+function operationSign(opSign) {
+    calculator.operationSign(opSign);
+    calculator.updateDisplay();
+}
+
+function computeInput() {
+    calculator.computeInput();
+    calculator.updateDisplay();
+}
+
+function deleteLastDigit() {
+    calculator.deleteLastDigit();
+    calculator.updateDisplay();
+}
+
+function clearAll() {
+    calculator.clear();
+    calculator.updateDisplay();
+}
+
+function onAndOff() {
+    const display = document.getElementsByName('display')[0];
+    const buttons = document.querySelectorAll('input[type="button"]');
+    
+    if (display.disabled) {
+        display.disabled = false;
+        buttons.forEach(button => button.disabled = false);
+        calculator.onAndOf();
+    } else {
+        display.disabled = true;
+        buttons.forEach(button => button.disabled = true);
+    }
+}

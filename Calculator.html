@@ -11,42 +11,41 @@
         <dvi class="calculator">
             <form>
                 <p>TP's CALCULATOR</p>
-                <div>
+                <div class="display">
                     <input type="text" name="display" disabled>
                 </div>
                 <div>
-                    <input type="button" value="On\Off" onclick="onAndOff()">
-                    <input type="button" value="AC" onclick="dis('')">
-                    <input type="button" value="DEL">
-                    <input type="button" value="/">
+                    <input type="button" id="onAndOff" value="On\Off" onclick="onAndOff()">
+                    <input type="button" value="AC" onclick="clearAll()">
+                    <input type="button" id="deleteOneValue" value="DEL" onclick="deleteLastDigit()">
+                    <input type="button" id="operationSigns" value="/" onclick="operationSign('/')">
                 </div>
                 <div>
-                    <input type="button" value="7" onclick="dis('7')" onkeydown="assignNumber(event)">
-                    <input type="button" value="8" onclick="dis('8')">
-                    <input type="button" value="9" onclick="dis('9')">
-                    <input type="button" value="*">
+                    <input type="button" id="numberButton" value="7"  onclick="addNumber('7')">
+                    <input type="button" id="numberButton" value="8"  onclick="addNumber('8')">
+                    <input type="button" id="numberButton" value="9"  onclick="addNumber('9')">
+                    <input type="button" id="operationSigns" value="*"  onclick="operationSign('*')">
                 </div>
                 <div>
-                    <input type="button" value="4">
-                    <input type="button" value="5">
-                    <input type="button" value="6">
-                    <input type="button" value="-">
+                    <input type="button" id="numberButton" value="4"  onclick="addNumber('4')">
+                    <input type="button" id="numberButton" value="5"  onclick="addNumber('5')">
+                    <input type="button" id="numberButton" value="6"  onclick="addNumber('6')">
+                    <input type="button" id="operationSigns" value="-"  onclick="operationSign('-')">
                 </div>
                 <div>
-                    <input type="button" value="1">
-                    <input type="button" value="2">
-                    <input type="button" value="3">
-                    <input type="button" value="+">
+                    <input type="button" id="numberButton" value="1"  onclick="addNumber('1')">
+                    <input type="button" id="numberButton" value="2"  onclick="addNumber('2')">
+                    <input type="button" id="numberButton" value="3"  onclick="addNumber('3')">
+                    <input type="button" id="operationSigns" value="+"  onclick="operationSign('+')">
                 </div>
                 <div>
-                    <input type="button" value=".">
-                    <input type="button" value="0">
-                    <input type="button" value="=" onclick="assignNumber(onclick)">
+                    <input type="button" value="."  onclick="addNumber('.')">
+                    <input type="button" id="numberButton" value="0"  onclick="addNumber('0')">
+                    <input type="button" value="=" onclick="computeInput(), updateDisplay()">
                 </div>
             </form>
         </dvi>
     </div>
-
+    <script src="logic.js"></script>
 </body>
-    <script href="logic.js"></script>
 </html>
