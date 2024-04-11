@@ -1,36 +1,75 @@
+// Define a Calculator class
 class Calculator {
     constructor(previousNum, currentNum) {
         this.previousNum = previousNum;
         this.currentNum = currentNum;
         this.opSign = '';
-    }
-    
-    onAndOf() {
-        var on = rgb(255, 0, 0);
-        var off = rgb(141, 149, 156);
-
-        document.getElementById('onAndOff').value = on;
-
+        this.isOn = false; // Flag to track if calculator is on
+        this.isOff = false; // Flag to track if calculator is off
     }
 
-    addNumber(number) {
-        if (number === '.' && this.currentNum.includes('.')) {
-            return;
+    // Method to toggle the calculator on/off
+    toggleCalculator() {
+        this.isOn = !this.isOn; // Toggle the isOn flag
+        const onOffButton = document.getElementById("onOffButton");
+        onOffButton.value = this.isOn ? "On" : "Off"; // Update the button value
+        document.getElementsByName("display")[0].disabled = !this.isOn; // Disable/enable the display
+        this.disableButtons(!this.isOn); // Disable/enable other buttons based on calculator state
+        if (this.isOn) {
+            this.currentNum = '0'; // Reset current number when turning on
+            this.updateDisplay();
+        } else {
+            document.getElementsByName('display')[0].value = ''; // Clear display when turning off
         }
-        this.currentNum = this.currentNum.toString() + number.toString();
     }
+
+    // Method to disable/enable buttons except the on/off button
+    disableButtons(disable) {
+        const buttons = document.querySelectorAll('.calculator input[type="button"]');
+        buttons.forEach(button => {
+            if (button.id !== 'onOffButton') {
+                button.disabled = disable;
+            }
+        });
+    }
+
+    // Method to add a number to the current number
+    addNumber(number) {
+        if (!this.isOn) return; // Return if calculator is off
+        if (this.currentNum.length >= 7) return; // Limit to seven digits
+        if (number === '.' && this.currentNum.includes('.')) {
+            return; // Avoid adding multiple decimal points
+        }
+        if (this.currentNum === '0' && number !== '.') {
+            this.currentNum = ''; // Remove leading zero if adding a non-zero digit
+        }
+        this.currentNum = this.currentNum.toString() + number.toString(); // Append the number
+        this.updateDisplay(); // Update the display
+    }
+
+    // Method to delete the last digit from the current number
     deleteLastDigit() {
-       /*onclick="display.value = display.value.toString().slice(0,-1)" */ 
-       this.currentNum = this.currentNum.slice(0, -1);
+        if (!this.isOn) return; // Return if calculator is off
+        if (this.currentNum.length === 1 || (this.currentNum.length === 2 && this.currentNum.startsWith('-'))) {
+            this.currentNum = '0'; // Reset to zero if only one digit is present or if it's negative with one digit
+        } else {
+            this.currentNum = this.currentNum.slice(0, -1); // Remove the last digit
+        }
+        this.updateDisplay(); // Update the display
     }
 
+    // Method to clear the calculator
     clear() {
-        this.previousNum = ' ';
-        this.currentNum = ' ';
-        this.opSign = ' ';
+        if (!this.isOn) return; // Return if calculator is off
+        this.previousNum = '';
+        this.currentNum = '0'; // Reset to zero
+        this.opSign = '';
+        this.updateDisplay(); // Update the display
     }
 
+    // Method to set the operation sign
     operationSign(opSign) {
+        if (!this.isOn) return; // Return if calculator is off
         if (this.opSign === '') {
             this.opSign = opSign;
             this.previousNum = this.currentNum;
@@ -39,18 +78,22 @@ class Calculator {
             this.computeInput();
             this.opSign = opSign;
         }
+        this.updateDisplay(); // Update the display
     }
 
+    // Method to update the display with the current number
     updateDisplay() {
         document.getElementsByName('display')[0].value = this.currentNum;
     }
 
+    // Method to compute the result of the operation
     computeInput() {
+        if (!this.isOn) return; // Return if calculator is off
         let sum;
         const preNumber = parseFloat(this.previousNum);
         const curNumber = parseFloat(this.currentNum);
         if (isNaN(preNumber) || isNaN(curNumber)) {
-            return;
+            return; // Return if either number is not a valid number
         }
 
         switch(this.opSign) {
@@ -70,54 +113,50 @@ class Calculator {
                 return;
         }
 
-        this.currentNum = sum;
+        this.currentNum = sum.toString();
         this.opSign = '';
         this.previousNum = "";
+        this.updateDisplay(); // Update the display
     }
 }
 
-let previousNum = "";
-let currentNum = "";
-const display = document.getElementsByName('display')[0];
-const numButtons = document.querySelectorAll('.numberButton');
-const operationButtons = document.querySelectorAll('#operationSigns');
-const calculator = new Calculator(previousNum, currentNum);
+// Create a new instance of Calculator
+const calculator = new Calculator('', '');
 
+// Function to toggle the calculator on/off
+function toggleCalculator() {
+    calculator.toggleCalculator();
+}
+
+// Function to add a number to the calculator
 function addNumber(number) {
     calculator.addNumber(number);
     calculator.updateDisplay();
 }
 
+// Function to set the operation sign
 function operationSign(opSign) {
     calculator.operationSign(opSign);
     calculator.updateDisplay();
 }
 
+// Function to compute the result of the operation
 function computeInput() {
     calculator.computeInput();
     calculator.updateDisplay();
 }
 
+// Function to delete the last digit from the current number
 function deleteLastDigit() {
     calculator.deleteLastDigit();
-    calculator.updateDisplay();
 }
 
+// Function to clear the calculator
 function clearAll() {
     calculator.clear();
-    calculator.updateDisplay();
 }
 
-function onAndOff() {
-    const display = document.getElementsByName('display')[0];
-    const buttons = document.querySelectorAll('input[type="button"]');
-    
-    if (display.disabled) {
-        display.disabled = false;
-        buttons.forEach(button => button.disabled = false);
-        calculator.onAndOf();
-    } else {
-        display.disabled = true;
-        buttons.forEach(button => button.disabled = true);
-    }
+// Function to turn off the calculator
+function turnOffCalculator() {
+    calculator.turnOffCalculator(); // This method is not defined in the class, needs implementation
 }

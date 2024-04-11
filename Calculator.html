@@ -4,48 +4,59 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculator</title>
+    <!-- Script to prevent right-click -->
+    <script>
+        document.addEventListener('contextmenu', function(event) {
+            event.preventDefault(); // Prevent right-click menu
+        });
+    </script>
 </head>
-    <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css"> <!-- Link to external stylesheet -->
 <body>
     <div class="content">
-        <dvi class="calculator">
+        <div class="calculator">
             <form>
-                <p>TP's CALCULATOR</p>
+                <p>TP's CALCULATOR</p> <!-- Title of the calculator -->
                 <div class="display">
-                    <input type="text" name="display" disabled>
+                    <div class="silkscreen-bold">
+                        <input type="text" name="display" disabled> <!-- Display area for calculator -->
+                    </div>
+                </div>
+                <!-- Buttons for calculator operations -->
+                <div>
+                    <input type="button" id="onOffButton" value="On" onclick="toggleCalculator()"> <!-- On/Off button -->
+                    <input type="button" value="AC" onclick="clearAll()"> <!-- Clear all button -->
+                    <input type="button" id="deleteOneValue" value="DEL" onclick="deleteLastDigit()"> <!-- Delete last digit button -->
+                    <input type="button" id="operationSigns" value="/" onclick="operationSign('/')"> <!-- Division operation button -->
                 </div>
                 <div>
-                    <input type="button" id="onAndOff" value="On\Off" onclick="onAndOff()">
-                    <input type="button" value="AC" onclick="clearAll()">
-                    <input type="button" id="deleteOneValue" value="DEL" onclick="deleteLastDigit()">
-                    <input type="button" id="operationSigns" value="/" onclick="operationSign('/')">
-                </div>
-                <div>
+                    <!-- Number buttons -->
                     <input type="button" id="numberButton" value="7"  onclick="addNumber('7')">
                     <input type="button" id="numberButton" value="8"  onclick="addNumber('8')">
                     <input type="button" id="numberButton" value="9"  onclick="addNumber('9')">
-                    <input type="button" id="operationSigns" value="*"  onclick="operationSign('*')">
+                    <input type="button" id="operationSigns" value="*"  onclick="operationSign('*')"> <!-- Multiplication operation button -->
                 </div>
                 <div>
                     <input type="button" id="numberButton" value="4"  onclick="addNumber('4')">
                     <input type="button" id="numberButton" value="5"  onclick="addNumber('5')">
                     <input type="button" id="numberButton" value="6"  onclick="addNumber('6')">
-                    <input type="button" id="operationSigns" value="-"  onclick="operationSign('-')">
+                    <input type="button" id="operationSigns" value="-"  onclick="operationSign('-')"> <!-- Subtraction operation button -->
                 </div>
                 <div>
                     <input type="button" id="numberButton" value="1"  onclick="addNumber('1')">
                     <input type="button" id="numberButton" value="2"  onclick="addNumber('2')">
                     <input type="button" id="numberButton" value="3"  onclick="addNumber('3')">
-                    <input type="button" id="operationSigns" value="+"  onclick="operationSign('+')">
+                    <input type="button" id="operationSigns" value="+"  onclick="operationSign('+')"> <!-- Addition operation button -->
                 </div>
                 <div>
+                    <!-- Decimal point and zero buttons -->
                     <input type="button" value="."  onclick="addNumber('.')">
                     <input type="button" id="numberButton" value="0"  onclick="addNumber('0')">
-                    <input type="button" value="=" onclick="computeInput(), updateDisplay()">
+                    <input type="button" value="=" onclick="computeInput()"> <!-- Equals operation button -->
                 </div>
             </form>
-        </dvi>
+        </div>
     </div>
-    <script src="logic.js"></script>
+    <script src="logic.js"></script> <!-- Link to external JavaScript file -->
 </body>
 </html>

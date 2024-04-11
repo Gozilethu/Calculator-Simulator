@@ -1,52 +1,90 @@
+/* Import Silkscreen font from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap');
+
+/* Styles for the body element */
 body {
-    background-color: rgb(170, 169, 169);
+    background-color: rgb(216, 215, 215); /* Set background color */
     box-sizing: border-box;
-    align-items: center;
+    align-items: center; /* Center content vertically */
     display: flex;
-    justify-content: center;
+    justify-content: center; /* Center content horizontally */
     height: 100vh; /* Adjusted to fill the viewport */
-    margin: 0; /* Removed default margin */
+    margin: 0; /* Remove margin */
 }
 
+/* Container for calculator */
 .content {
     width: 100%;
     max-width: 400px; /* Adjusted for responsiveness */
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically */
 }
 
+/* Styles for the calculator interface */
 .calculator {
-    background-color: rgb(141, 149, 156);
-    padding: 20px;
-    border-radius: 10px;
+    background-color: rgb(141, 149, 156); /* Set background color */
+    padding: 20px; /* Add padding */
+    border-radius: 10px; /* Add border radius */
 }
 
+/* Styles for div elements inside the calculator form */
 .calculator form div {
-    margin-bottom: 10px;
+    margin-bottom: 10px; /* Add margin bottom */
 }
 
+/* Styles for the text input field */
 .calculator form input[type="text"] {
     font-style: inherit;
-    width: 260px; 
-    height: 60px;
-    border-radius: 5px;
-    padding: 0 10px;
-    margin-bottom: 10px; 
+    width: 260px; /* Set width */
+    height: 60px; /* Set height */
+    border-radius: 5px; /* Add border radius */
+    padding: 0 10px; /* Add padding */
+    margin-bottom: 10px; /* Add margin bottom */
 }
 
+/* Styles for button elements */
 .calculator form input[type="button"] {
-    width: 60px;
-    height: 60px;
-    border-radius: 5px;
-    background-color: rgb(141, 149, 156);
-    margin-right: 10px;
+    width: 60px; /* Set width */
+    height: 60px; /* Set height */
+    border-radius: 7px; /* Add border radius */
+    background-color: rgb(141, 149, 156); /* Set background color */
+    margin-right: 10px; /* Add margin right */
 }
+
+/* Styles for the equal button */
 .calculator form input[value="="] {
-    width: 135px;
+    width: 135px; /* Adjust width to accommodate two characters */
 }
+
+/* Styles for the "On/Off" button */
+.calculator form input[id="onOffButton"] {
+    border-color: red; /* Set border color to red */
+}
+
+/* Styles for paragraph elements */
 p {
-    text-align-last: right; 
-    font-size: 10px;
-    font-style: italic;
+    text-align-last: right; /* Set text alignment */
+    font-size: 10px; /* Set font size */
+    font-style: italic; /* Set font style */
+}
+
+/* Styles for Silkscreen font */
+.silkscreen-regular {
+    font-family: "Silkscreen", sans-serif; /* Set font family */
+    font-weight: 400; /* Set font weight */
+    font-style: normal; /* Set font style */
+}
+
+.silkscreen-bold {
+    font-family: "Silkscreen", sans-serif; /* Set font family */
+    font-weight: 700; /* Set font weight */
+    font-style: normal; /* Set font style */
+}
+
+/* Styles for elements with the class "display" */
+.display {
+    font-family: "Silkscreen", sans-serif; /* Set font family */
+    font-weight: 300; /* Set font weight */
+    font-style: normal; /* Set font style */
 }
