@@ -39,38 +39,38 @@ class Calculator {
         display.disabled = true;
     }
 
-    // Function to calculate square root
+    // Method to calculate square root
     squareRoot() {
-        if (!calculator.isOn) 
+        if (!this.isOn) 
             return; // Return if calculator is off
-        const display = document.getElementsByName('display');
-        this.currentNumber = parseFloat(display.innerText);
+        const display = document.getElementsByName('display')[0];
+        const currentNumber = parseFloat(display.value);
         if (!isNaN(currentNumber) && currentNumber >= 0) {
             const squareRootValue = Math.sqrt(currentNumber);
-            display.innerText = squareRootValue.toString();
+            display.value = squareRootValue.toString();
         } else {
-            display.innerText = "Error"; // Display error if the input is negative
+            display.value = "Error"; // Display error if the input is negative
         }
     }
 
-    // Function to calculate percentage
+    // Method to calculate percentage
     percentage() {
         if (!this.isOn) 
             return; // Return if calculator is off
-        const display = document.getElementsByName('display');
-        this.currentNumber = parseFloat(display.innerText);
+        const display = document.getElementsByName('display')[0];
+        const currentNumber = parseFloat(display.value);
         if (!isNaN(currentNumber)) {
             const percentValue = currentNumber / 100;
-            display.innerText = percentValue.toString();
+            display.value = percentValue.toString();
         }
     }
-    
-    // Function to add a parenthesis
+
+    // Method to add a parenthesis
     addParenthesis(parenthesis) {
         if (!this.isOn) 
             return; // Return if calculator is off
-        const display = document.getElementsByName('display');
-        display.innerText += parenthesis; // Append the parenthesis to the display
+        const display = document.getElementsByName('display')[0];
+        display.value += parenthesis; // Append the parenthesis to the display
     }
 
     // Method to add a number to the current number
@@ -208,7 +208,6 @@ function clearAll() {
 // Function to turn off/on the calculator
 function turnOffCalculator() {
     calculator.turnOffCalculator(); // This method is not defined in the class, needs implementation
-
 }
 
 function squareRoot() {
