@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!--font-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
+
+    <link rel="shortcut icon" type="x-icon" href="calculator.svg">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculator</title>
@@ -10,49 +17,62 @@
             event.preventDefault(); // Prevent right-click menu
         });
     </script>
+
 </head>
 <link rel="stylesheet" href="style.css"> <!-- Link to external stylesheet -->
 <body>
     <div class="content">
         <div class="calculator">
             <form>
-                <p>TP's CALCULATOR</p> <!-- Title of the calculator -->
+                <label>TP's CALCULATOR</label><!-- Title of the calculator -->
                 <div class="display">
-                    <div class="silkscreen-bold">
-                        <input type="text" name="display" disabled> <!-- Display area for calculator -->
-                    </div>
+                    <input type="text" name="display" disabled> <!--Display area for calculator-->
                 </div>
+                
                 <!-- Buttons for calculator operations -->
                 <div>
                     <input type="button" id="onOffButton" value="On" onclick="toggleCalculator()"> <!-- On/Off button -->
-                    <input type="button" value="AC" onclick="clearAll()"> <!-- Clear all button -->
+                    <input type="button" value="CA" onclick="clearAll()"> <!-- Clear all button -->
                     <input type="button" id="deleteOneValue" value="DEL" onclick="deleteLastDigit()"> <!-- Delete last digit button -->
                     <input type="button" id="operationSigns" value="/" onclick="operationSign('/')"> <!-- Division operation button -->
                 </div>
+
+                <div>
+                    <!-- Speration Signs button -->
+                    <!-- Square root button -->
+                    <input type="button" id="operationSigns" value="√" onclick="squareRoot()">
+                    <!-- Left parenthesis button -->
+                    <input type="button" id="operationSigns" value="(" onclick="addParenthesis('(')">
+                    <!-- Right parenthesis button -->
+                    <input type="button" id="operationSigns" value=")" onclick="addParenthesis(')')">
+                    <!--Percentage-->
+                    <input type="button" id="operationSigns" value="%" onclick="percentage()">
+                </div>
+
                 <div>
                     <!-- Number buttons -->
                     <input type="button" id="numberButton" value="7"  onclick="addNumber('7')">
                     <input type="button" id="numberButton" value="8"  onclick="addNumber('8')">
                     <input type="button" id="numberButton" value="9"  onclick="addNumber('9')">
-                    <input type="button" id="operationSigns" value="*"  onclick="operationSign('*')"> <!-- Multiplication operation button -->
+                    <input type="button" id="operationSigns" value="*" onclick="operationSign('*')"><!-- Multiplication operation button -->
                 </div>
                 <div>
                     <input type="button" id="numberButton" value="4"  onclick="addNumber('4')">
                     <input type="button" id="numberButton" value="5"  onclick="addNumber('5')">
                     <input type="button" id="numberButton" value="6"  onclick="addNumber('6')">
-                    <input type="button" id="operationSigns" value="-"  onclick="operationSign('-')"> <!-- Subtraction operation button -->
+                    <input type="button" id="operationSigns" value="-" onclick="operationSign('-')"><!-- Subtraction operation button -->
                 </div>
                 <div>
                     <input type="button" id="numberButton" value="1"  onclick="addNumber('1')">
                     <input type="button" id="numberButton" value="2"  onclick="addNumber('2')">
                     <input type="button" id="numberButton" value="3"  onclick="addNumber('3')">
-                    <input type="button" id="operationSigns" value="+"  onclick="operationSign('+')"> <!-- Addition operation button -->
+                    <input type="button" id="operationSigns" value="+"  onclick="operationSign('+')"><!-- Addition operation button -->
                 </div>
                 <div>
                     <!-- Decimal point and zero buttons -->
                     <input type="button" value="."  onclick="addNumber('.')">
                     <input type="button" id="numberButton" value="0"  onclick="addNumber('0')">
-                    <input type="button" value="=" onclick="computeInput()"> <!-- Equals operation button -->
+                    <input type="button" value="=" onclick="computeInput()"><!-- Equals operation button -->
                 </div>
             </form>
         </div>

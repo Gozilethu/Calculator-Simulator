@@ -33,7 +33,7 @@ body {
     margin-bottom: 10px; /* Add margin bottom */
 }
 
-/* Styles for the text input field */
+/* Styles for the input field */
 .calculator form input[type="text"] {
     font-style: inherit;
     width: 260px; /* Set width */
@@ -62,29 +62,97 @@ body {
     border-color: red; /* Set border color to red */
 }
 
-/* Styles for paragraph elements */
-p {
+.calculator form button{
+    width: 60px; /* Set width */
+    height: 60px; /* Set height */
+    border-radius: 7px; /* Add border radius */
+    background-color: rgb(141, 149, 156); /* Set background color */
+    margin-right: 10px; /* Add margin right */
+}
+
+/* Styles for label elements */
+label {
     text-align-last: right; /* Set text alignment */
     font-size: 10px; /* Set font size */
     font-style: italic; /* Set font style */
 }
 
-/* Styles for Silkscreen font */
-.silkscreen-regular {
-    font-family: "Silkscreen", sans-serif; /* Set font family */
-    font-weight: 400; /* Set font weight */
-    font-style: normal; /* Set font style */
-}
-
-.silkscreen-bold {
-    font-family: "Silkscreen", sans-serif; /* Set font family */
-    font-weight: 700; /* Set font weight */
-    font-style: normal; /* Set font style */
-}
-
 /* Styles for elements with the class "display" */
 .display {
     font-family: "Silkscreen", sans-serif; /* Set font family */
-    font-weight: 300; /* Set font weight */
+    font-weight: 600; /* Set font weight */
     font-style: normal; /* Set font style */
 }
+
+
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 24
+}
+
+/* Add styles for the label */
+.display label {
+    font-family: "Silkscreen", sans-serif;
+    font-weight: 700; /* Bold */
+    font-size: 16px; /* Adjust font size as needed */
+    color: #fff; /* Text color */
+}
+
+/* Add styles for the span */
+.display span {
+    font-family: "Silkscreen", sans-serif;
+    font-weight: 300; /* Regular */
+    font-size: 16px; /* Adjust font size as needed */
+    color: #fff; /* Text color */
+    display: inline-block; /* Ensure it takes up only necessary space */
+    width: 90%;
+    height: 40px;
+    padding: 10px; /* Add padding */
+    border-radius: 5px; /* Add border radius */
+    background-color: #c2c2c2; /* Background color */
+}
+
+.calculator form input[value="%"] {
+    width: 60px;
+    height: 60px;
+    border-radius: 7px;
+    background-color: rgb(141, 149, 156);
+    margin-right: 10px;
+    font-size: 24px; /* Adjust font size */
+    color: #fff; /* Text color */
+}
+.calculator form input[value="("] {
+    width: 60px;
+    height: 60px;
+    border-radius: 7px;
+    background-color: rgb(141, 149, 156);
+    margin-right: 10px;
+    font-size: 24px; /* Adjust font size */
+    color: #fff; /* Text color */
+}
+
+.calculator form input[value=")"] {
+    width: 60px;
+    height: 60px;
+    border-radius: 7px;
+    background-color: rgb(141, 149, 156);
+    margin-right: 10px;
+    font-size: 24px; /* Adjust font size */
+    color: #fff; /* Text color */
+}
+
+.calculator form input[value="√"] {
+    width: 60px;
+    height: 60px;
+    border-radius: 7px;
+    background-color: rgb(141, 149, 156);
+    margin-right: 10px;
+    font-size: 24px; /* Adjust font size */
+    color: #fff; /* Text color */
+}
+
+
+

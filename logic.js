@@ -12,12 +12,13 @@ class Calculator {
     toggleCalculator() {
         this.isOn = !this.isOn; // Toggle the isOn flag
         const onOffButton = document.getElementById("onOffButton");
-        onOffButton.value = this.isOn ? "On" : "Off"; // Update the button value
+        onOffButton.value = this.isOn ? "ON" : "OFF"; // Update the button value
         document.getElementsByName("display")[0].disabled = !this.isOn; // Disable/enable the display
         this.disableButtons(!this.isOn); // Disable/enable other buttons based on calculator state
         if (this.isOn) {
             this.currentNum = '0'; // Reset current number when turning on
             this.updateDisplay();
+            this.disableOutputField();
         } else {
             document.getElementsByName('display')[0].value = ''; // Clear display when turning off
         }
@@ -33,9 +34,49 @@ class Calculator {
         });
     }
 
+    disableOutputField() {
+        const display = document.getElementsByName('display')[0];
+        display.disabled = true;
+    }
+
+    // Function to calculate square root
+    squareRoot() {
+        if (!calculator.isOn) 
+            return; // Return if calculator is off
+        const display = document.getElementsByName('display');
+        this.currentNumber = parseFloat(display.innerText);
+        if (!isNaN(currentNumber) && currentNumber >= 0) {
+            const squareRootValue = Math.sqrt(currentNumber);
+            display.innerText = squareRootValue.toString();
+        } else {
+            display.innerText = "Error"; // Display error if the input is negative
+        }
+    }
+
+    // Function to calculate percentage
+    percentage() {
+        if (!this.isOn) 
+            return; // Return if calculator is off
+        const display = document.getElementsByName('display');
+        this.currentNumber = parseFloat(display.innerText);
+        if (!isNaN(currentNumber)) {
+            const percentValue = currentNumber / 100;
+            display.innerText = percentValue.toString();
+        }
+    }
+    
+    // Function to add a parenthesis
+    addParenthesis(parenthesis) {
+        if (!this.isOn) 
+            return; // Return if calculator is off
+        const display = document.getElementsByName('display');
+        display.innerText += parenthesis; // Append the parenthesis to the display
+    }
+
     // Method to add a number to the current number
     addNumber(number) {
-        if (!this.isOn) return; // Return if calculator is off
+        if (!this.isOn) 
+            return; // Return if calculator is off
         if (this.currentNum.length >= 7) return; // Limit to seven digits
         if (number === '.' && this.currentNum.includes('.')) {
             return; // Avoid adding multiple decimal points
@@ -49,7 +90,8 @@ class Calculator {
 
     // Method to delete the last digit from the current number
     deleteLastDigit() {
-        if (!this.isOn) return; // Return if calculator is off
+        if (!this.isOn) 
+        return; // Return if calculator is off
         if (this.currentNum.length === 1 || (this.currentNum.length === 2 && this.currentNum.startsWith('-'))) {
             this.currentNum = '0'; // Reset to zero if only one digit is present or if it's negative with one digit
         } else {
@@ -60,7 +102,8 @@ class Calculator {
 
     // Method to clear the calculator
     clear() {
-        if (!this.isOn) return; // Return if calculator is off
+        if (!this.isOn) 
+        return; // Return if calculator is off
         this.previousNum = '';
         this.currentNum = '0'; // Reset to zero
         this.opSign = '';
@@ -69,7 +112,8 @@ class Calculator {
 
     // Method to set the operation sign
     operationSign(opSign) {
-        if (!this.isOn) return; // Return if calculator is off
+        if (!this.isOn) 
+            return; // Return if calculator is off
         if (this.opSign === '') {
             this.opSign = opSign;
             this.previousNum = this.currentNum;
@@ -84,11 +128,13 @@ class Calculator {
     // Method to update the display with the current number
     updateDisplay() {
         document.getElementsByName('display')[0].value = this.currentNum;
+        disableOutField();
     }
 
     // Method to compute the result of the operation
     computeInput() {
-        if (!this.isOn) return; // Return if calculator is off
+        if (!this.isOn) 
+        return; // Return if calculator is off
         let sum;
         const preNumber = parseFloat(this.previousNum);
         const curNumber = parseFloat(this.currentNum);
@@ -126,12 +172,15 @@ const calculator = new Calculator('', '');
 // Function to toggle the calculator on/off
 function toggleCalculator() {
     calculator.toggleCalculator();
+
+    if (!calculator.isOn) {
+        calculator.disableOutputField(); // Call the function to disable the display
+    }
 }
 
 // Function to add a number to the calculator
 function addNumber(number) {
     calculator.addNumber(number);
-    calculator.updateDisplay();
 }
 
 // Function to set the operation sign
@@ -156,7 +205,20 @@ function clearAll() {
     calculator.clear();
 }
 
-// Function to turn off the calculator
+// Function to turn off/on the calculator
 function turnOffCalculator() {
     calculator.turnOffCalculator(); // This method is not defined in the class, needs implementation
+
+}
+
+function squareRoot() {
+    calculator.squareRoot();
+}
+
+function addParenthesis(parenthesis) {
+    calculator.addParenthesis(parenthesis);
+}
+
+function percentage() {
+    calculator.percentage();
 }
